@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/column_widget.dart';
+import 'package:myapp/row_widget.dart';
+import 'package:myapp/basic_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,18 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Praktikum Mobile Lanjut'),
-        ),
-        body: const Center(
-          child: Text(
-            'Halo Nama Saya Sulthon Abdul Hakim',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      )
+      home: const BasicWidget(),
     );
   }
 }

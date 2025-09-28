@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
+import 'dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Label dengan tanda *
+    // Label dengan tanda bintang (*)
     Widget requiredLabel(String text) => Row(
           children: [
             Text(text, style: const TextStyle(fontSize: 13)),
@@ -46,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
               boxShadow: [
                 BoxShadow(
                   color: const Color(0xFF1E88FF).withOpacity(0.25),
-                  blurRadius: 16,
+                  blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
               ],
@@ -67,11 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/logo-mola.png',
-                  height: 80,
-                  fit: BoxFit.contain,
-                ),
+                Image.asset('assets/images/logo-mola.png',
+                    height: 80, fit: BoxFit.contain),
                 const SizedBox(height: 18),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
@@ -128,7 +126,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextButton(
                           style:
                               TextButton.styleFrom(padding: EdgeInsets.zero),
-                          onPressed: () {},
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Forgot Password clicked')),
+                            );
+                          },
                           child: const Text(
                             'Forgot Password',
                             style: TextStyle(fontSize: 12),
@@ -137,15 +140,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 6),
                       primaryButton('Sign In Now', () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sign In tapped')),
-                        );
+                        if (_email.text.isEmpty || _pass.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Email dan Password tidak boleh kosong!'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        } else {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            DashboardScreen.route,
+                            (route) => false,
+                          );
+                        }
                       }),
                       const SizedBox(height: 14),
                       Center(
                         child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, SignupScreen.route),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, SignupScreen.route),
                           child: const Text(
                             'Create New Account',
                             style: TextStyle(fontSize: 13),

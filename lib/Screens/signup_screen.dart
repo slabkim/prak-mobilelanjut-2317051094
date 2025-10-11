@@ -69,7 +69,7 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/logo-mola.png',
+                Image.asset('assets/images/JustduitLogo.png',
                     height: 80, fit: BoxFit.contain),
                 const SizedBox(height: 18),
                 const Padding(

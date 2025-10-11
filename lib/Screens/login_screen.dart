@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 import 'dashboard_screen.dart';
+import 'splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -68,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/logo-mola.png',
+                Image.asset('assets/images/JustduitLogo.png',
                     height: 80, fit: BoxFit.contain),
                 const SizedBox(height: 18),
                 const Padding(
@@ -151,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         } else {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            DashboardScreen.route,
+                            SplashScreen.route,
                             (route) => false,
                           );
                         }
